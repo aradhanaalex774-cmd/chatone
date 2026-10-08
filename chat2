@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try to Click Me 😈</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 80px;
+            font-size: 42px;
+        }
+
+        p {
+            font-size: 20px;
+        }
+
+        #button {
+            position: absolute;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            background: white;
+            color: #ff4f81;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.15s;
+            left: 50%;
+            top: 55%;
+            transform: translate(-50%, -50%);
+        }
+
+        #button:hover {
+            transform: scale(1.1);
+        }
+
+        #message {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 10;
+        }
+
+        #message h2 {
+            font-size: 50px;
+        }
+
+        #message p {
+            font-size: 24px;
+        }
+
+        .emoji {
+            font-size: 70px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>😈 Try to Click the Button</h1>
+    <p>Bet you can't click it...</p>
+
+    <button id="button">CLICK ME</button>
+
+    <div id="message">
+        <div class="emoji">😂</div>
+        <h2>YOU ACTUALLY DID IT!</h2>
+        <p>Okay... you're officially too good at this.</p>
+    </div>
+
+    <script>
+        const button = document.getElementById("button");
+        const message = document.getElementById("message");
+
+        let clicks = 0;
+
+        function moveButton() {
+            clicks++;
+
+            if (clicks >= 10) {
+                message.style.display = "flex";
+                return;
+            }
+
+            const maxX = window.innerWidth - button.offsetWidth;
+            const maxY = window.innerHeight - button.offsetHeight;
+
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+
+            button.style.left = x + "px";
+            button.style.top = y + "px";
+            button.style.transform = "none";
+
+            button.textContent =
+                clicks === 1 ? "NOPE 😂" :
+                clicks === 2 ? "TOO SLOW 😭" :
+                clicks === 3 ? "HAHA 😈" :
+                clicks === 4 ? "KEEP TRYING" :
+                clicks === 5 ? "ALMOST!" :
+                clicks === 6 ? "YOU WISH 😂" :
+                clicks === 7 ? "STOP 😂" :
+                clicks === 8 ? "SERIOUSLY?" :
+                "ONE MORE!";
+        }
+
+        button.addEventListener("mouseenter", moveButton);
+        button.addEventListener("click", moveButton);
+    </script>
+
+</body>
+</html>
